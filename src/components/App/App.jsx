@@ -39,6 +39,21 @@ function App() {
             alert('error getting items');
             console.log(err);
           })
+  
+    }
+
+
+    const markPurchased = (items) => {
+        axios.put('/shopping')
+       
+        .then(response => {
+            setShoppingList(response.data)
+            console.log(response.data);
+          })
+          .catch(err => {
+            alert('error putting items');
+            console.log(err);
+          })
     }
 
     return (

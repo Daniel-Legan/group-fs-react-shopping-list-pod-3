@@ -38,4 +38,35 @@ router.post('/', (req, res) => {
         })
 })
 
+//PUT
+router.put('/:id', (req, res)=>{
+    
+    let itemId=req.params.id;
+    console.log('in PUT shopping put with id of:', itemId);
+
+    //Updating task status to create a toggle for boolean value
+
+    let sqlText=`
+    UPDATE "shopping_list"
+    SET "status" = NOT "status"
+    WHERE "id" = $1;`;
+
+    const sqlParams=[itemId];
+    console.log(sqlParams);
+
+    pool.query(sqlText, sqlParams)
+    .then((dbRes)=>{
+
+        res.send(dbRes.rows);
+        console.log(dbRes.rows);
+
+
+    })
+    .catch(err=>{
+      console.log('in /shopping put error', err);
+      res.sendStatus(500);
+    });
+
+});
+
 module.exports = router;

@@ -18,6 +18,8 @@ function GroceryList({shoppingList}){
                     <td>{item.quantity}</td>
                     <td>{item.unit}</td>
                     <td>{item.status}</td>
+                    <td><button onClick={markPurchased}>Buy</button></td>
+                    <td><button onClick={markPurchased}>Reset</button></td>
                 </tr>
                 ))}
             </tbody>
