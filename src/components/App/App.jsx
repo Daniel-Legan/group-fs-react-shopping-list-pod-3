@@ -49,8 +49,8 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <p>Under Construction...</p>
-                <ItemForm addItem={addItem}/>
+            <ItemForm addItem={addItem}/>
+            <GroceryList shoppingList={shoppingList} />
             </main>
         </div>
     );
