@@ -1,5 +1,6 @@
 import DeleteItem from "../DeleteItem/DeleteItem";
 import PurchaseItem from "../PurchaseItem/PurchaseItem";
+import ResetPurchases from "../ResetPurchases/ResetPurchases";
 
 function GroceryList({shoppingList, markPurchased, deleteItem}){
     return(

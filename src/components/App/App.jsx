@@ -75,6 +75,20 @@ function App() {
         })
     }
 
+    const resetPurchases = () =>{
+        axios.put(`/shopping`)
+        
+        .then(response => {
+            console.log(response.data);
+            getItems();
+          })
+         
+          .catch(err => {
+            alert('error resetting items');
+            console.log(err);
+          })
+        }
+
    
 
     return (
@@ -82,7 +96,7 @@ function App() {
             <Header />
             <main>
             <ItemForm addItem={addItem}/>
-            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem}/>
+            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} resetPurchases={resetPurchases}/>
             </main>
         </div>
     );
