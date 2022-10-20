@@ -4,6 +4,7 @@ import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
+import { response } from 'express';
 
 function App() {
     //Declaring shopping list variables
@@ -39,6 +40,23 @@ function App() {
             alert('error getting items');
             console.log(err);
           })
+    }
+
+    const deleteItem = (shoppingList) => {
+
+        axios({
+            method:'DELETE',
+            url: `/shopping/${shoppingList.id}`
+        })
+        .then((response) => {
+            console.log('Item deleted', response);
+
+            getItems()
+        })
+        .catch((err) => {
+            console.log('Error in delete', err);
+
+        })
     }
 
     return (
