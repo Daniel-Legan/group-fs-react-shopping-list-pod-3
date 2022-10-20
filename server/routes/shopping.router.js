@@ -41,7 +41,8 @@ router.post('/', (req, res) => {
 //PUT
 router.put('/:id', (req, res)=>{
     
-    let itemId=req.params.id;
+    const itemId=req.params.id;
+    // console.log(req.params.id);
     console.log('in PUT shopping put with id of:', itemId);
 
     //Updating task status to create a toggle for boolean value
@@ -51,14 +52,13 @@ router.put('/:id', (req, res)=>{
     SET "status" = NOT "status"
     WHERE "id" = $1;`;
 
-    const sqlParams=[itemId];
-    console.log(sqlParams);
+    // const sqlParams=[itemId];
+    // console.log(sqlParams);
 
-    pool.query(sqlText, sqlParams)
+    pool.query(sqlText,[itemId])
     .then((dbRes)=>{
 
-        res.send(dbRes.rows);
-        console.log(dbRes.rows);
+        res.sendStatus(200);
 
 
     })

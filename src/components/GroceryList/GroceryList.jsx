@@ -19,7 +19,7 @@ function GroceryList({shoppingList, markPurchased}){
                     <td>{item.item}</td>
                     <td>{item.quantity}</td>
                     <td>{item.unit}</td>
-                    <td>{item.status}</td>
+                    <td>{item.status.toString()}</td>
                     <PurchaseItem id={item.id} purchaseBtn={markPurchased}/>
                     {/* <td><button onClick={()=> markPurchased(item)}>Buy</button></td>
                     <td><button onClick={()=> clearPurchases(item)}>Reset</button></td> */}

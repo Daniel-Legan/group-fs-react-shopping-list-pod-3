@@ -43,8 +43,8 @@ function App() {
     }
 
 
-    const markPurchased = (item) => {
-        axios.put(`/shopping/${item.id}`)
+    const markPurchased = (id) => {
+        axios.put(`/shopping/${id}`)
         
         .then(response => {
             console.log(response.data);
@@ -62,7 +62,8 @@ function App() {
             <Header />
             <main>
             <ItemForm addItem={addItem}/>
-            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased}/>
+            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} />
+          
     
             </main>
         </div>
