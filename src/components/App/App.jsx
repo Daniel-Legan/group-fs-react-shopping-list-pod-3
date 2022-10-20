@@ -5,6 +5,26 @@ import './App.css';
 
 
 function App() {
+    //Declaring shopping list variables
+    let [shoppingList, setShoppingList] = useState([]);
+
+    //On load, get shopping list
+    useEffect(()=>{
+        getItems()
+    }, [])
+
+    const getItems = () => {
+        axios.get('/shopping')
+        .then(response => {
+            setShoppingList(response.data)
+            console.log(response.data);
+          })
+          .catch(err => {
+            alert('error getting items');
+            console.log(err);
+          })
+    }
+
     return (
         <div className="App">
             <Header />
