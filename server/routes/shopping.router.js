@@ -92,4 +92,21 @@ router.delete('/:id', (req,res) => {
 
 })
 
+router.delete('/', (req,res) => {
+
+    const sqlText = `TRUNCATE TABLE "shopping_list";`;
+
+    pool.query(sqlText)
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('error in DELETE', err);
+            res.sendStatus(500);
+        })
+
+})
+
+
+
 module.exports = router;
