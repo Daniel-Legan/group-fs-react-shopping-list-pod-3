@@ -1,9 +1,7 @@
 import DeleteItem from "../DeleteItem/DeleteItem";
+import PurchaseItem from "../PurchaseItem/PurchaseItem";
 
-function GroceryList({shoppingList, deleteItem}){
-    console.log('DELETE ITEM', deleteItem)
-    console.log('SHOPPING LIST', shoppingList)
-
+function GroceryList({shoppingList, markPurchased, deleteItem}){
     return(
         <>
         <table>
@@ -22,6 +20,7 @@ function GroceryList({shoppingList, deleteItem}){
                     <td>{item.quantity}</td>
                     <td>{item.unit}</td>
                     <td>{item.status.toString()}</td>
+                    <PurchaseItem id={item.id} purchaseBtn={markPurchased}/>
                     <DeleteItem id = {item.id} deleteBtn = {deleteItem}/>
                 </tr>
                 ))}
