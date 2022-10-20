@@ -1,5 +1,7 @@
+import PurchaseItem from "../PurchaseItem/PurchaseItem";
 
-function GroceryList({shoppingList}){
+
+function GroceryList({shoppingList, markPurchased}){
     return(
         <>
         <table>
@@ -18,8 +20,9 @@ function GroceryList({shoppingList}){
                     <td>{item.quantity}</td>
                     <td>{item.unit}</td>
                     <td>{item.status}</td>
-                    <td><button onClick={markPurchased}>Buy</button></td>
-                    <td><button onClick={markPurchased}>Reset</button></td>
+                    <PurchaseItem id={item.id} purchaseBtn={markPurchased}/>
+                    {/* <td><button onClick={()=> markPurchased(item)}>Buy</button></td>
+                    <td><button onClick={()=> clearPurchases(item)}>Reset</button></td> */}
                 </tr>
                 ))}
             </tbody>

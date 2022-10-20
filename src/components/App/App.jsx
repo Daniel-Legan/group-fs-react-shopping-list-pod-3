@@ -43,15 +43,16 @@ function App() {
     }
 
 
-    const markPurchased = (items) => {
-        axios.put('/shopping')
-       
+    const markPurchased = (item) => {
+        axios.put(`/shopping/${item.id}`)
+        
         .then(response => {
-            setShoppingList(response.data)
             console.log(response.data);
+            getItems();
           })
+         
           .catch(err => {
-            alert('error putting items');
+            alert('error marking items as purchased');
             console.log(err);
           })
     }
@@ -61,7 +62,8 @@ function App() {
             <Header />
             <main>
             <ItemForm addItem={addItem}/>
-            <GroceryList shoppingList={shoppingList} />
+            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased}/>
+    
             </main>
         </div>
     );
