@@ -1,5 +1,9 @@
+import DeleteItem from "../DeleteItem/DeleteItem";
 
-function GroceryList({shoppingList}){
+function GroceryList({shoppingList, deleteItem}){
+    console.log('DELETE ITEM', deleteItem)
+    console.log('SHOPPING LIST', shoppingList)
+
     return(
         <>
         <table>
@@ -17,7 +21,8 @@ function GroceryList({shoppingList}){
                     <td>{item.item}</td>
                     <td>{item.quantity}</td>
                     <td>{item.unit}</td>
-                    <td>{item.status}</td>
+                    <td>{item.status.toString()}</td>
+                    <DeleteItem id = {item.id} deleteBtn = {deleteItem}/>
                 </tr>
                 ))}
             </tbody>
