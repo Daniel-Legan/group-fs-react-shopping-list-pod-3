@@ -3,26 +3,7 @@ import axios from 'axios';
 import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
-
-function App() {
-
-    const addItem = (newItem) => {
-        axios({
-            method: 'POST',
-            url: '/shopping',
-            data: newItem
-        })
-        .then((response) => {
-            console.log('POST response from server', response.data);
-            // TODO: CALL GET FUNCTION
-        })
-        .catch((err) => {
-            console.log('POST error from server', err);
-        })
-    }
-    
-    import GroceryList from '../GroceryList/GroceryList.jsx';
-
+import GroceryList from '../GroceryList/GroceryList.jsx';
 
 function App() {
     //Declaring shopping list variables
@@ -32,6 +13,21 @@ function App() {
     useEffect(()=>{
         getItems()
     }, [])
+
+    const addItem = (newItem) => {
+        axios({
+            method: 'POST',
+            url: '/shopping',
+            data: newItem
+        })
+        .then((response) => {
+            console.log('POST response from server', response.data);
+            getItems();
+        })
+        .catch((err) => {
+            console.log('POST error from server', err);
+        })
+    }
 
     const getItems = () => {
         axios.get('/shopping')
