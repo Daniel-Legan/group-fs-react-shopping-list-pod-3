@@ -1,7 +1,7 @@
+import DeleteItem from "../DeleteItem/DeleteItem";
 import PurchaseItem from "../PurchaseItem/PurchaseItem";
 
-
-function GroceryList({shoppingList, markPurchased}){
+function GroceryList({shoppingList, markPurchased, deleteItem}){
     return(
         <>
         <table>
@@ -21,8 +21,7 @@ function GroceryList({shoppingList, markPurchased}){
                     <td>{item.unit}</td>
                     <td>{item.status.toString()}</td>
                     <PurchaseItem id={item.id} purchaseBtn={markPurchased}/>
-                    {/* <td><button onClick={()=> markPurchased(item)}>Buy</button></td>
-                    <td><button onClick={()=> clearPurchases(item)}>Reset</button></td> */}
+                    <DeleteItem id = {item.id} deleteBtn = {deleteItem}/>
                 </tr>
                 ))}
             </tbody>
