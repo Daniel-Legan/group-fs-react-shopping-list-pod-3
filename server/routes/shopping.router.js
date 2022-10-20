@@ -42,7 +42,7 @@ router.delete('/:id', (req,res) => {
 
     const itemId = req.params.id;
 
-    console.log(itemId);
+    console.log('ITEM ID', itemId);
 
     const sqlText = `DELETE FROM "shopping_list"
                         WHERE  "id" = $1;`;

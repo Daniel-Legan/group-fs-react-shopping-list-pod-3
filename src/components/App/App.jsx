@@ -4,7 +4,7 @@ import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
-import { response } from 'express';
+//import { response } from 'express';
 
 function App() {
     //Declaring shopping list variables
@@ -42,11 +42,11 @@ function App() {
           })
     }
 
-    const deleteItem = (shoppingList) => {
+    const deleteItem = (id) => {
 
         axios({
             method:'DELETE',
-            url: `/shopping/${shoppingList.id}`
+            url: `/shopping/${id}`
         })
         .then((response) => {
             console.log('Item deleted', response);
@@ -64,7 +64,7 @@ function App() {
             <Header />
             <main>
             <ItemForm addItem={addItem}/>
-            <GroceryList shoppingList={shoppingList} />
+            <GroceryList shoppingList={shoppingList} deleteItem={deleteItem} />
             </main>
         </div>
     );
