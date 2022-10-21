@@ -17,7 +17,7 @@ function ItemForm({ addItem }) {
         addItem(newItem);
     }
     return (
-        <>
+    
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -39,7 +39,7 @@ function ItemForm({ addItem }) {
                 />
                 <button type="submit">Submit</button>
             </form>
-        </>
+
     );
 }
 
