@@ -20,7 +20,7 @@ function GroceryList({shoppingList, markPurchased, deleteItem}){
                     <td>{item.quantity}</td>
                     <td>{item.unit}</td>
                     <td>{item.status.toString()}</td>
-                    <PurchaseItem id={item.id} purchaseBtn={markPurchased}/>
+                    <PurchaseItem id = {item.id} purchaseBtn = {markPurchased}/>
                     <DeleteItem id = {item.id} deleteBtn = {deleteItem}/>
                 </tr>
                 ))}

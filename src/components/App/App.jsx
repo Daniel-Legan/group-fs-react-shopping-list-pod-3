@@ -4,6 +4,8 @@ import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
+import DeleteItem from '../DeleteItem/DeleteItem.jsx';
+import DeleteList from '../DeleteList/DeleteList.jsx';
 //import { response } from 'express';
 
 function App() {
@@ -80,7 +82,8 @@ function App() {
             <Header />
             <main>
             <ItemForm addItem={addItem}/>
-            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem}/>
+            <DeleteList listToDelete = {shoppingList} deleteFunc = {deleteItem}/>
+            <GroceryList shoppingList = {shoppingList} markPurchased = {markPurchased} deleteItem = {deleteItem}/>
             </main>
         </div>
     );
