@@ -1,8 +1,8 @@
 
-function ResetPurchases({}){
+function ResetPurchases({resetPurchases}){
     return (    
         <>
-        <td><button OnClick = {()=> resetBtn()}>Reset</button></td>
+        <button onClick = {(resetPurchases)}>Reset</button>
         </>
     );
 }

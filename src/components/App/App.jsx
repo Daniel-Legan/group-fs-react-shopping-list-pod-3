@@ -4,6 +4,7 @@ import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
+import ResetPurchases from "../ResetPurchases/ResetPurchases";
 //import { response } from 'express';
 
 function App() {
@@ -75,12 +76,12 @@ function App() {
         })
     }
 
-    const resetPurchases = () =>{
-        axios.put(`/shopping`)
+    const resetPurchases = (shoppingList) =>{
+        axios.put('/shopping')
         
         .then(response => {
             console.log(response.data);
-            getItems();
+            getItems(response.data);
           })
          
           .catch(err => {
@@ -96,6 +97,7 @@ function App() {
             <Header />
             <main>
             <ItemForm addItem={addItem}/>
+            <ResetPurchases resetPurchases= {resetPurchases} />
             <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} resetPurchases={resetPurchases}/>
             </main>
         </div>
