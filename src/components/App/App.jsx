@@ -39,12 +39,15 @@ function App() {
 
     const getItems = () => {
         axios.get('/shopping')
+        
             .then(response => {
                 setShoppingList(response.data)
+                
                 console.log(response.data);
             })
             .catch(err => {
                 alert('error getting items');
+                
                 console.log(err);
             })
 
@@ -56,20 +59,23 @@ function App() {
 
             .then(response => {
                 console.log(response.data);
+                
                 getItems();
             })
 
             .catch(err => {
                 alert('error marking items as purchased');
+                
                 console.log(err);
             })
     }
 
     const deleteItem = (id) => {
-
         axios({
+        
             method: 'DELETE',
             url: `/shopping/${id}`
+            
         })
             .then((response) => {
                 console.log('Item deleted', response);
@@ -89,7 +95,7 @@ function App() {
 
     //         method: 'DELETE',
     //         url: `/shopping`
-
+    
     //     })
     //         .then((response) => {
     //             console.log('Item deleted', response);
@@ -107,13 +113,13 @@ function App() {
 
             .then(response => {
                 console.log(response.data);
-
+                
                 getItems(response.data);
             })
 
             .catch(err => {
                 alert('error resetting items');
-
+                
                 console.log(err);
             })
     }
@@ -127,14 +133,14 @@ function App() {
                 {/* (pass in function to add new object to table) */}
                 <ItemForm addItem={addItem} />
 
+                <h3>Shopping List</h3>
+                
                 {/* (pass in function to reset all status to false) */}
                 <ResetPurchases resetPurchases={resetPurchases} />
 
                 {/* (pass in array list and function to delete by id) */}
                 <DeleteList listToDelete={shoppingList} deleteFunc={deleteItem} />
                 {/*<DeleteList deleteList={deleteList} /> CALL TO DELETE BY NEW ENDPOINT*/}
-
-                <h3>Shopping List</h3>
 
                 {/* pass in function to toggle status and function to delete item by id */}
                 <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} />

@@ -9,7 +9,6 @@ function DeleteItem({ id, deleteBtn }) {
                 {/* (pass in id to delete function) */}
                 <button onClick={() => deleteBtn(id)} type="click">Remove</button>
             </td>
-
         </>
     )
 }

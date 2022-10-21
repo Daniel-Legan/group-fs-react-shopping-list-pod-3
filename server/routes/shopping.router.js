@@ -66,9 +66,9 @@ router.put('/:id', (req, res) => {
         })
         .catch(err => {
             console.log('in /shopping put error', err);
+            
             res.sendStatus(500);
         });
-
 });
 
 // PUT ALL ENDPOINT
@@ -90,7 +90,6 @@ router.put('/', (req, res) => {
 
             res.sendStatus(500);
         });
-
 });
 
 // DELETE BY ID
@@ -108,7 +107,7 @@ router.delete('/:id', (req, res) => {
 
     pool.query(sqlText, sqlParams)
         .then((response) => {
-
+        
             res.sendStatus(200);
         })
         .catch((err) => {
@@ -116,7 +115,6 @@ router.delete('/:id', (req, res) => {
 
             res.sendStatus(500);
         });
-
 });
 
 // DELETE BY ENDPOINT
