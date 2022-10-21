@@ -4,7 +4,9 @@ import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
+import ResetPurchases from "../ResetPurchases/ResetPurchases";
 import DeleteList from '../DeleteList/DeleteList.jsx';
+
 //import { response } from 'express';
 
 function App() {
@@ -92,17 +94,43 @@ function App() {
 
             })
     }
+    
+      const resetPurchases = (shoppingList) =>{
+        axios.put('/shopping')
+        
+        .then(response => {
+            console.log(response.data);
+            getItems(response.data);
+          })
+         
+          .catch(err => {
+            alert('error resetting items');
+            console.log(err);
+          })
+        }
+
 
 
     return (
         <div className="App">
             <Header />
             <main>
-                <h3>Add an Item</h3>
-                <ItemForm addItem={addItem} />
-                <h3>Shopping List</h3>
-                <DeleteList deleteList={deleteList} />
-                <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} />
+            
+            <h3>Add an Item</h3>
+            
+            
+            <ItemForm addItem={addItem}/>
+            
+             <h3>Shopping List</h3>
+             <DeleteList deleteList={deleteList} />
+                
+            <ResetPurchases resetPurchases= {resetPurchases} />
+            
+            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} />
+       
+
+                
+             
             </main>
         </div>
     );
