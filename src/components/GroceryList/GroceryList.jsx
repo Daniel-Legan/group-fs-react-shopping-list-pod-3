@@ -1,6 +1,7 @@
 import DeleteItem from "../DeleteItem/DeleteItem";
 import PurchaseItem from "../PurchaseItem/PurchaseItem";
 
+
 function GroceryList({shoppingList, markPurchased, deleteItem}){
     return(
         <>
@@ -22,6 +23,8 @@ function GroceryList({shoppingList, markPurchased, deleteItem}){
                     <td>{item.status.toString()}</td>
                     <PurchaseItem id = {item.id} purchaseBtn = {markPurchased}/>
                     <DeleteItem id = {item.id} deleteBtn = {deleteItem}/>
+
+
                 </tr>
                 ))}
             </tbody>

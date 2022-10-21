@@ -46,7 +46,7 @@ router.put('/:id', (req, res)=>{
     console.log('in PUT shopping put with id of:', itemId);
 
     //Updating task status to create a toggle for boolean value
-
+    
     let sqlText=`
     UPDATE "shopping_list"
     SET "status" = NOT "status"
@@ -64,6 +64,29 @@ router.put('/:id', (req, res)=>{
     })
     .catch(err=>{
       console.log('in /shopping put error', err);
+      res.sendStatus(500);
+    });
+
+});
+
+// PUT2
+router.put('/', (req, res)=>{
+    
+    
+    let sqlText=`
+    UPDATE "shopping_list"
+    SET "status" = FALSE;
+    `;
+
+    pool.query(sqlText)
+    .then((dbRes)=>{
+
+        res.sendStatus(200);
+
+
+    })
+    .catch(err=>{
+      console.log('in /shopping put2 error', err);
       res.sendStatus(500);
     });
 
@@ -91,5 +114,22 @@ router.delete('/:id', (req,res) => {
         })
 
 })
+
+router.delete('/', (req,res) => {
+
+    const sqlText = `TRUNCATE TABLE "shopping_list";`;
+
+    pool.query(sqlText)
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('error in DELETE', err);
+            res.sendStatus(500);
+        })
+
+})
+
+
 
 module.exports = router;

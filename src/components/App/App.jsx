@@ -6,6 +6,9 @@ import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
 import DeleteItem from '../DeleteItem/DeleteItem.jsx';
 import DeleteList from '../DeleteList/DeleteList.jsx';
+import ResetPurchases from "../ResetPurchases/ResetPurchases";
+//import DeleteList from '../DeleteList/DeleteList.jsx';
+
 //import { response } from 'express';
 
 function App() {
@@ -13,7 +16,7 @@ function App() {
     let [shoppingList, setShoppingList] = useState([]);
 
     //On load, get shopping list
-    useEffect(()=>{
+    useEffect(() => {
         getItems()
     }, [])
 
@@ -23,66 +26,105 @@ function App() {
             url: '/shopping',
             data: newItem
         })
-        .then((response) => {
-            console.log('POST response from server', response.data);
-            getItems();
-        })
-        .catch((err) => {
-            console.log('POST error from server', err);
-        })
+            .then((response) => {
+                console.log('POST response from server', response.data);
+                getItems();
+            })
+            .catch((err) => {
+                console.log('POST error from server', err);
+            })
     }
 
     const getItems = () => {
         axios.get('/shopping')
-        .then(response => {
-            setShoppingList(response.data)
-            console.log(response.data);
-          })
-          .catch(err => {
-            alert('error getting items');
-            console.log(err);
-          })
-  
+            .then(response => {
+                setShoppingList(response.data)
+                console.log(response.data);
+            })
+            .catch(err => {
+                alert('error getting items');
+                console.log(err);
+            })
+
     }
 
 
     const markPurchased = (id) => {
         axios.put(`/shopping/${id}`)
-        
-        .then(response => {
-            console.log(response.data);
-            getItems();
-          })
-         
-          .catch(err => {
-            alert('error marking items as purchased');
-            console.log(err);
-          })
+
+            .then(response => {
+                console.log(response.data);
+                getItems();
+            })
+
+            .catch(err => {
+                alert('error marking items as purchased');
+                console.log(err);
+            })
     }
 
     const deleteItem = (id) => {
 
         axios({
-            method:'DELETE',
+            method: 'DELETE',
             url: `/shopping/${id}`
         })
-        .then((response) => {
-            console.log('Item deleted', response);
+            .then((response) => {
+                console.log('Item deleted', response);
 
-            getItems()
-        })
-        .catch((err) => {
-            console.log('Error in delete', err);
+                getItems()
+            })
+            .catch((err) => {
+                console.log('Error in delete', err);
 
-        })
+            })
     }
+
+    const deleteList = () => {
+
+        axios({
+            method: 'DELETE',
+            url: `/shopping`
+        })
+            .then((response) => {
+                console.log('Item deleted', response);
+
+                getItems()
+            })
+            .catch((err) => {
+                console.log('Error in delete', err);
+
+            })
+    }
+    
+      const resetPurchases = (shoppingList) =>{
+        axios.put('/shopping')
+        
+        .then(response => {
+            console.log(response.data);
+            getItems(response.data);
+          })
+         
+          .catch(err => {
+            alert('error resetting items');
+            console.log(err);
+          })
+        }
+
+
 
     return (
         <div className="App">
             <Header />
             <main>
+            
+            <h3>Add an Item</h3>
             <ItemForm addItem={addItem}/>
+            <ResetPurchases resetPurchases= {resetPurchases} />
             <DeleteList listToDelete = {shoppingList} deleteFunc = {deleteItem}/>
+            //<DeleteList deleteList={deleteList} />
+            
+            <h3>Shopping List</h3>
             <GroceryList shoppingList = {shoppingList} markPurchased = {markPurchased} deleteItem = {deleteItem}/>
             </main>
         </div>
