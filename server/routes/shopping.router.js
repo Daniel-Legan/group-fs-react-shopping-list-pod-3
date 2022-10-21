@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         })
         .catch((error) => {
             console.log(`Error making database query`, error);
-            res.sendStatus(500); 
+            res.sendStatus(500);
         })
 })
 
@@ -39,15 +39,15 @@ router.post('/', (req, res) => {
 })
 
 // PUT
-router.put('/:id', (req, res)=>{
-    
-    const itemId=req.params.id;
+router.put('/:id', (req, res) => {
+
+    const itemId = req.params.id;
     // console.log(req.params.id);
     console.log('in PUT shopping put with id of:', itemId);
 
     //Updating task status to create a toggle for boolean value
-    
-    let sqlText=`
+
+    let sqlText = `
     UPDATE "shopping_list"
     SET "status" = NOT "status"
     WHERE "id" = $1;`;
@@ -55,45 +55,43 @@ router.put('/:id', (req, res)=>{
     // const sqlParams=[itemId];
     // console.log(sqlParams);
 
-    pool.query(sqlText,[itemId])
-    .then((dbRes)=>{
+    pool.query(sqlText, [itemId])
+        .then((dbRes) => {
 
-        res.sendStatus(200);
+            res.sendStatus(200);
 
 
-    })
-    .catch(err=>{
-      console.log('in /shopping put error', err);
-      res.sendStatus(500);
-    });
-
+        })
+        .catch(err => {
+            console.log('in /shopping put error', err);
+            res.sendStatus(500);
+        });
 });
 
 // PUT2
-router.put('/', (req, res)=>{
-    
-    
-    let sqlText=`
+router.put('/', (req, res) => {
+
+
+    let sqlText = `
     UPDATE "shopping_list"
     SET "status" = FALSE;
     `;
 
     pool.query(sqlText)
-    .then((dbRes)=>{
+        .then((dbRes) => {
 
-        res.sendStatus(200);
+            res.sendStatus(200);
 
 
-    })
-    .catch(err=>{
-      console.log('in /shopping put2 error', err);
-      res.sendStatus(500);
-    });
-
+        })
+        .catch(err => {
+            console.log('in /shopping put2 error', err);
+            res.sendStatus(500);
+        });
 });
 
 // DELETE
-router.delete('/:id', (req,res) => {
+router.delete('/:id', (req, res) => {
 
     const itemId = req.params.id;
 
@@ -112,10 +110,9 @@ router.delete('/:id', (req,res) => {
             console.log('error in DELETE', err);
             res.sendStatus(500);
         })
-
 })
 
-router.delete('/', (req,res) => {
+router.delete('/', (req, res) => {
 
     const sqlText = `TRUNCATE TABLE "shopping_list";`;
 
@@ -127,7 +124,6 @@ router.delete('/', (req,res) => {
             console.log('error in DELETE', err);
             res.sendStatus(500);
         })
-
 })
 
 

@@ -2,3 +2,35 @@ main {
   width: 90%;
   margin: auto;
 }
+
+tbody {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  border: rgb(116, 116, 116) solid;
+  margin: 30px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.item div {
+  margin: 10px;
+}
+
+button {
+  margin: 5px;
+}
+
+form {
+  width: 60%;
+}
+
+form div {
+  margin: 5px;
+}
+form input {
+  margin: 0 5px;
+}

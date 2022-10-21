@@ -96,20 +96,20 @@ function App() {
 
             })
     }
-    
-      const resetPurchases = (shoppingList) =>{
+
+    const resetPurchases = (shoppingList) => {
         axios.put('/shopping')
-        
-        .then(response => {
-            console.log(response.data);
-            getItems(response.data);
-          })
-         
-          .catch(err => {
-            alert('error resetting items');
-            console.log(err);
-          })
-        }
+
+            .then(response => {
+                console.log(response.data);
+                getItems(response.data);
+            })
+
+            .catch(err => {
+                alert('error resetting items');
+                console.log(err);
+            })
+    }
 
 
 
@@ -117,15 +117,14 @@ function App() {
         <div className="App">
             <Header />
             <main>
-            
-            <h3>Add an Item</h3>
-            <ItemForm addItem={addItem}/>
-            <ResetPurchases resetPurchases= {resetPurchases} />
-            <DeleteList listToDelete = {shoppingList} deleteFunc = {deleteItem}/>
-            //<DeleteList deleteList={deleteList} />
-            
-            <h3>Shopping List</h3>
-            <GroceryList shoppingList = {shoppingList} markPurchased = {markPurchased} deleteItem = {deleteItem}/>
+
+                <h3>Add an Item</h3>
+                <ItemForm addItem={addItem} />
+                {/* <DeleteList deleteList={deleteList} /> */}
+                <h3>Shopping List</h3>
+                <ResetPurchases resetPurchases={resetPurchases} />
+                <DeleteList listToDelete={shoppingList} deleteFunc={deleteItem} />
+                <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} />
             </main>
         </div>
     );

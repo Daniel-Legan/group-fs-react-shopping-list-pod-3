@@ -19,24 +19,31 @@ function ItemForm({ addItem }) {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="item"
-                    onChange={(evt) => setNewItemName(evt.target.value)}
-                    value={newItemName}
-                />
-                <input
-                    type="number"
-                    placeholder="quantity"
-                    onChange={(evt) => setNewQuantity(evt.target.value)}
-                    value={newQuantity}
-                />
-                <input
-                    type="text"
-                    placeholder="unit"
-                    onChange={(evt) => setNewUnit(evt.target.value)}
-                    value={newUnit}
-                />
+                <div>
+                    <label>Item:</label>
+                    <input
+                        type="text"
+                        placeholder="item"
+                        onChange={(evt) => setNewItemName(evt.target.value)}
+                        value={newItemName}
+                    />
+                </div>
+                <div>
+                    <label>Quantity:</label>
+                    <input
+                        type="number"
+                        placeholder="quantity"
+                        onChange={(evt) => setNewQuantity(evt.target.value)}
+                        value={newQuantity}
+                    />
+                    <label>Unit:</label>
+                    <input
+                        type="text"
+                        placeholder="unit"
+                        onChange={(evt) => setNewUnit(evt.target.value)}
+                        value={newUnit}
+                    />
+                </div>
                 <button type="submit">Submit</button>
             </form>
         </>
