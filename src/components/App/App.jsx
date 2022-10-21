@@ -4,11 +4,8 @@ import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
-import DeleteItem from '../DeleteItem/DeleteItem.jsx';
 import DeleteList from '../DeleteList/DeleteList.jsx';
 import ResetPurchases from "../ResetPurchases/ResetPurchases";
-//import DeleteList from '../DeleteList/DeleteList.jsx';
-
 //import { response } from 'express';
 
 function App() {
@@ -21,17 +18,22 @@ function App() {
     }, [])
 
     const addItem = (newItem) => {
+
         axios({
+
             method: 'POST',
             url: '/shopping',
             data: newItem
+
         })
             .then((response) => {
                 console.log('POST response from server', response.data);
+
                 getItems();
             })
             .catch((err) => {
                 console.log('POST error from server', err);
+
             })
     }
 
@@ -80,52 +82,62 @@ function App() {
             })
     }
 
-    const deleteList = () => {
+// CALL TO DELETE ALL BY ENDPOINT
+    // const deleteList = () => {
 
-        axios({
-            method: 'DELETE',
-            url: `/shopping`
-        })
-            .then((response) => {
-                console.log('Item deleted', response);
+    //     axios({
 
-                getItems()
+    //         method: 'DELETE',
+    //         url: `/shopping`
+
+    //     })
+    //         .then((response) => {
+    //             console.log('Item deleted', response);
+
+    //             getItems()
+    //         })
+    //         .catch((err) => {
+    //             console.log('Error in delete', err);
+
+    //         })
+    // }
+
+    const resetPurchases = (shoppingList) => {
+        axios.put('/shopping')
+
+            .then(response => {
+                console.log(response.data);
+
+                getItems(response.data);
             })
-            .catch((err) => {
-                console.log('Error in delete', err);
 
+            .catch(err => {
+                alert('error resetting items');
+
+                console.log(err);
             })
     }
-    
-      const resetPurchases = (shoppingList) =>{
-        axios.put('/shopping')
-        
-        .then(response => {
-            console.log(response.data);
-            getItems(response.data);
-          })
-         
-          .catch(err => {
-            alert('error resetting items');
-            console.log(err);
-          })
-        }
-
-
 
     return (
         <div className="App">
             <Header />
             <main>
-            
-            <h3>Add an Item</h3>
-            <ItemForm addItem={addItem}/>
-            <ResetPurchases resetPurchases= {resetPurchases} />
-            <DeleteList listToDelete = {shoppingList} deleteFunc = {deleteItem}/>
-            //<DeleteList deleteList={deleteList} />
-            
-            <h3>Shopping List</h3>
-            <GroceryList shoppingList = {shoppingList} markPurchased = {markPurchased} deleteItem = {deleteItem}/>
+                <h3>Add an Item</h3>
+
+                {/* (pass in function to add new object to table) */}
+                <ItemForm addItem={addItem} />
+
+                {/* (pass in function to reset all status to false) */}
+                <ResetPurchases resetPurchases={resetPurchases} />
+
+                {/* (pass in array list and function to delete by id) */}
+                <DeleteList listToDelete={shoppingList} deleteFunc={deleteItem} />
+                {/*<DeleteList deleteList={deleteList} /> CALL TO DELETE BY NEW ENDPOINT*/}
+
+                <h3>Shopping List</h3>
+
+                {/* pass in function to toggle status and function to delete item by id */}
+                <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} />
             </main>
         </div>
     );
