@@ -1,8 +1,11 @@
+//RESET ALL STATUS TO FALSE (pass in function to reset all)
+function ResetPurchases({ resetPurchases }) {
 
-function ResetPurchases({resetPurchases}){
-    return (    
+//RENDER RESET BUTTON TO DOM
+    return (
         <>
-        <button onClick = {(resetPurchases)}>Reset</button>
+        {/* (reset all status to false) */}
+            <button onClick={(resetPurchases)}>Reset</button>
         </>
     );
 }
