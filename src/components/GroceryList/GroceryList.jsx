@@ -11,7 +11,7 @@ function GroceryList({shoppingList, markPurchased, deleteItem}){
                     <td>{item.item}</td>
                     <td>{item.quantity}</td>
                     <td>{item.unit}</td>
-                    <PurchaseItem id={item.id} purchaseBtn={markPurchased}/>
+                    <PurchaseItem item={item} purchaseBtn={markPurchased}/>
                     <DeleteItem id = {item.id} deleteBtn = {deleteItem}/>
                 </tr>
                 ))}

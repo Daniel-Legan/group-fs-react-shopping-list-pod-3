@@ -51,7 +51,8 @@ router.put('/:id', (req, res)=>{
     UPDATE "shopping_list"
     SET "status" = NOT "status"
     WHERE "id" = $1;`;
-
+    
+    
     // const sqlParams=[itemId];
     // console.log(sqlParams);
 

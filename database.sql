@@ -8,7 +8,8 @@ CREATE TABLE "shopping_list" (
 	"item" VARCHAR(80) NOT NULL,
 	"quantity" FLOAT NOT NULL,
 	"unit" VARCHAR(20) NOT NULL,
-	"status" BOOLEAN DEFAULT FALSE
+	"status" BOOLEAN DEFAULT FALSE,
+	"statustext" VARCHAR (30)
 );
 
 INSERT INTO "shopping_list" ("item", "quantity", "unit")
