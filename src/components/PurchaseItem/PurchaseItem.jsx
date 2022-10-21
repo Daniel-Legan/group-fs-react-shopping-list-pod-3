@@ -3,10 +3,10 @@ function PurchaseItem({ id, purchaseBtn }) {
 
     // RENDER BUY BUTTON FOR EACH ITEM TO DOM
     return (
-        <td>
+        <>
             {/* (pass in id to update items status) */}
             <button onClick={() => purchaseBtn(id)}>Buy</button>
-        </td>
+        </>
     )
 }
 

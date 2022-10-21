@@ -5,10 +5,8 @@ function DeleteItem({ id, deleteBtn }) {
 //RENDER DELETE BUTTON FOR EACH ITEM TO DOM    
     return (
         <>
-            <td>
                 {/* (pass in id to delete function) */}
                 <button onClick={() => deleteBtn(id)} type="click">Remove</button>
-            </td>
         </>
     )
 }
