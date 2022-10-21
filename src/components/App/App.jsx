@@ -4,8 +4,10 @@ import Header from '../Header/Header.jsx'
 import './App.css';
 import ItemForm from '../ItemForm/ItemForm.jsx';
 import GroceryList from '../GroceryList/GroceryList.jsx';
-import ResetPurchases from "../ResetPurchases/ResetPurchases";
+import DeleteItem from '../DeleteItem/DeleteItem.jsx';
 import DeleteList from '../DeleteList/DeleteList.jsx';
+import ResetPurchases from "../ResetPurchases/ResetPurchases";
+//import DeleteList from '../DeleteList/DeleteList.jsx';
 
 //import { response } from 'express';
 
@@ -117,20 +119,13 @@ function App() {
             <main>
             
             <h3>Add an Item</h3>
-            
-            
             <ItemForm addItem={addItem}/>
-            
-             <h3>Shopping List</h3>
-             <DeleteList deleteList={deleteList} />
-                
             <ResetPurchases resetPurchases= {resetPurchases} />
+            <DeleteList listToDelete = {shoppingList} deleteFunc = {deleteItem}/>
+            //<DeleteList deleteList={deleteList} />
             
-            <GroceryList shoppingList={shoppingList} markPurchased={markPurchased} deleteItem={deleteItem} />
-       
-
-                
-             
+            <h3>Shopping List</h3>
+            <GroceryList shoppingList = {shoppingList} markPurchased = {markPurchased} deleteItem = {deleteItem}/>
             </main>
         </div>
     );
